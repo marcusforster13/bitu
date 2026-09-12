@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101e32">
+  <meta name="description" content="Dê voz à coruja da XPTO. Um estúdio para animar seu mascote com o microfone e apresentar ao vivo.">
+  <title>XPTO — Estúdio ao vivo</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" type="module"></script>
+</head>
+<body>
+  <svg class="icons" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="mic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="13" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3m-4 0h8"/></symbol>
+    <symbol id="expand" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></symbol>
+    <symbol id="play" viewBox="0 0 24 24"><path d="m9 5 11 7-11 7Z"/></symbol>
+    <symbol id="eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="screen" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></symbol>
+    <symbol id="close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+  </defs></svg>
+  <header class="header">
+    <a class="brand" href="./" aria-label="XPTO, início"><span class="brand-mark">X</span><span>XPTO<span class="brand-dot">.</span></span></a>
+    <span class="header-divider"></span><span class="header-title">Estúdio do mascote</span>
+    <button class="header-help" id="helpButton"><svg><use href="#screen"/></svg>Como usar no Teams</button>
+  </header>
+  <main>
+    <div class="page-heading"><div><div class="eyebrow">SUA VOZ. NOSSO MASCOTE.</div><h1>Vamos dar vida à coruja<span>.</span></h1><p>Ligue o microfone. Fale naturalmente. Ela acompanha você.</p></div><span class="session-tag">ESTÚDIO AO VIVO</span></div>
+    <div class="workspace">
+      <section class="stage" id="stage" aria-label="Palco da coruja XPTO">
+        <div class="stage-top"><span class="stage-label"><span id="statusDot" class="status-dot"></span><span id="stageStatus">Preparando a coruja</span></span><span class="stage-brand">XPTO / LIVE</span></div>
+        <div class="mascot-wrap" id="mascotWrap"><div class="mascot" id="mascot" role="img" aria-label="Coruja robótica, mascote da XPTO"><img src="assets/open-closed.png" alt="" aria-hidden="true" fetchpriority="high" class="pose active" data-pose="open-closed"></div></div>
+        <div class="stage-bottom"><div class="caption"><span class="caption-line"></span><div><strong>A voz é sua.</strong><span>A presença é XPTO.</span></div></div><button class="stage-expand" id="stageExpand" aria-label="Abrir modo de apresentação" title="Modo de apresentação"><svg><use href="#expand"/></svg></button></div>
+        <button class="exit-presentation" id="exitPresentation"><svg><use href="#close"/></svg>Sair da apresentação <kbd>Esc</kbd></button>
+      </section>
+      <aside class="controls" aria-label="Controles do estúdio">
+        <div class="control-heading"><span class="section-number">01</span><h2>Sua voz no comando</h2></div>
+        <p class="control-intro">A coruja move o bico no ritmo do seu microfone.</p>
+        <label class="field-label" for="device">Microfone</label>
+        <select id="device"><option value="">Padrão do sistema</option></select>
+        <button class="primary-button" id="micButton" disabled><svg><use href="#mic"/></svg><span>Carregando imagens…</span></button>
+        <p class="privacy-note">Seu áudio fica neste navegador. Nada é gravado.</p>
+        <div class="audio-panel"><div class="meter-heading"><span>Nível de entrada</span><span id="inputStatus">Desligado</span></div><div class="meter" id="meter" role="meter" aria-label="Nível do microfone" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div><div class="meter-scale"><span>Silêncio</span><span>Voz forte</span></div></div>
+        <div class="range-heading"><label for="sensitivity">Sensibilidade</label><output id="sensitivityValue" for="sensitivity">50%</output></div>
+        <input type="range" id="sensitivity" min="0" max="100" value="50">
+        <p class="field-hint">Aumente se a coruja não acompanhar sua voz.</p>
+        <div class="blink-setting"><div><svg><use href="#eye"/></svg><label for="blink">Piscar naturalmente</label></div><input type="checkbox" role="switch" id="blink" checked></div>
+        <div class="control-divider"></div>
+        <div class="control-heading"><span class="section-number">02</span><h2>Pronta para o público</h2></div>
+        <p class="control-intro">Deixe só a coruja em cena e compartilhe a janela no Teams.</p>
+        <button class="presentation-button" id="presentButton"><svg><use href="#expand"/></svg>Modo de apresentação<svg class="end-icon"><use href="#arrow"/></svg></button>
+        <button class="demo-button" id="demoButton" disabled><svg><use href="#play"/></svg><span>Testar animação sem microfone</span></button>
+        <p id="message" class="message" role="status" aria-live="polite"></p>
+      </aside>
+    </div>
+    <footer><span>XPTO <span class="footer-separator">/</span> Uma nova forma de estar presente.</span><span class="footer-note">Feito para falar. Pronto para apresentar.</span></footer>
+  </main>
+  <dialog id="helpDialog"><div class="dialog-heading"><span class="eyebrow">ENTRE EM CENA</span><button id="closeHelp" class="icon-button" aria-label="Fechar instruções"><svg><use href="#close"/></svg></button></div><h2>Sua coruja no Teams</h2><ol><li><strong>Ative o microfone aqui.</strong><p>Permita o acesso e fale. Ajuste a sensibilidade até o bico acompanhar sua voz.</p></li><li><strong>Entre no modo de apresentação.</strong><p>Os controles somem e a coruja ocupa o palco. Use Esc para voltar.</p></li><li><strong>Compartilhe esta janela no Teams.</strong><p>Na reunião, escolha Compartilhar e selecione a janela do navegador com a coruja.</p></li><li><strong>Fale com o microfone do Teams ligado.</strong><p>O site anima a coruja; sua voz é transmitida pelo Teams. Cada apresentador pode abrir o site e usar o próprio microfone.</p></li></ol><div class="dialog-note">A coruja reage ao microfone selecionado neste computador. Ela não capta automaticamente a voz dos outros participantes e não substitui a câmera.</div><button class="primary-button" id="understood">Entendi, vamos lá<svg><use href="#arrow"/></svg></button></dialog>
+</body>
+</html>
