@@ -55,3 +55,13 @@ body{background-color:#05070f;background-image:linear-gradient(#1b244038 1px,tra
 .status-dot.live{background:#64e79a;box-shadow:0 0 10px #64e79a66}
 footer,.footer-note{color:#7c8aa0}.footer-separator{color:#546176}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline-color:#00d3e4}
+
+/* Approved BURI banner adapted within the existing header footprint. */
+.header{position:relative;background-color:#030b12;background-image:radial-gradient(ellipse at 65% 80%,#00a8c415,transparent 55%),linear-gradient(90deg,transparent 49.9%,#00d3e414 50%,transparent 50.1%);background-size:auto,100px 100%;isolation:isolate}
+.buri-wordmark{position:absolute;left:0;top:50%;transform:translateY(-50%);color:#f4f8fc;font-size:42px;font-weight:800;letter-spacing:1px;line-height:1;white-space:nowrap;text-shadow:0 0 18px #ffffff12}
+.buri-wordmark small{position:absolute;left:calc(100% + 22px);top:50%;transform:translateY(-50%);border-left:2px solid #00d3e4;padding-left:20px;font-size:11px;font-weight:500;letter-spacing:2px;line-height:1.5;color:#d2e4ec}
+.brasilia-art{position:absolute;right:calc(4.6% + 230px);top:7px;width:248px;height:70px;background-image:url('assets/buri-header-art.png');background-repeat:no-repeat;background-size:489px 163px;background-position:-241px -47px;pointer-events:none;z-index:-1}
+.header-help{position:relative;background:#030b12e8}
+@media(max-width:1050px){.buri-wordmark small{left:0;top:calc(100% + 3px);transform:none;border:0;padding:0;font-size:8px;letter-spacing:1px}.buri-wordmark{font-size:36px;transform:translateY(-65%)}.brasilia-art{right:calc(4.6% + 210px)}}
+@media(max-width:730px){.buri-wordmark{font-size:30px}.buri-wordmark small{font-size:7px;letter-spacing:.5px}.brasilia-art{display:none}}
+.brasilia-art{width:210px;background-position:-279px -47px;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
