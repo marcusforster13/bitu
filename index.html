@@ -53,6 +53,15 @@
         <button class="demo-button" id="demoButton" disabled><svg><use href="#play"/></svg><span>Testar animação sem microfone</span></button>
         <p id="message" class="message" role="status" aria-live="polite"></p>
         <div class="logo-setting"><label class="field-label" for="logoChoice">Logo na roupa</label><select id="logoChoice"><option value="none">Sem logo</option><option value="operational">Operational Intelligence</option><option value="xpto">XPTO</option></select></div>
+        <section class="narration-setting" aria-labelledby="narrationTitle">
+          <h2 id="narrationTitle">Locução oficial</h2>
+          <p class="control-intro">A coruja acompanha a gravação, sem usar o microfone.</p>
+          <audio id="narrationAudio" src="assets/locucao-oficial.mp3" preload="metadata"></audio>
+          <button class="primary-button" id="narrationButton" disabled><svg><use href="#play"/></svg><span>Reproduzir locução oficial</span></button>
+          <div class="narration-footer"><button id="narrationRestart" disabled>Voltar ao início</button><span id="narrationTime" aria-label="Tempo da locução">0:00 / —</span></div>
+          <p class="field-hint">No Teams, compartilhe também o som do computador para todos ouvirem a locução.</p>
+          <p id="narrationMessage" class="message" role="status" aria-live="polite"></p>
+        </section>
       </aside>
     </div>
 

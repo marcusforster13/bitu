@@ -21,3 +21,8 @@
 .controls{max-height:clamp(384px,calc(120dvh - 336px),665px);overflow-y:auto;overscroll-behavior-y:contain;scrollbar-width:thin;scrollbar-color:#9baec9 transparent;align-self:start;scroll-padding-block:20px}
 .controls .logo-setting{max-width:none;margin:22px 0 0;padding:20px 0 0;border:0;border-top:1px solid var(--line);border-radius:0}
 @media(max-width:730px){.controls{max-height:78dvh}}
+.narration-setting{margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
+.narration-setting .control-intro{margin-bottom:12px}
+.narration-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:12px 0;font-size:13px;color:var(--muted)}
+.narration-footer button{padding:5px 0;border:0;background:transparent;color:var(--blue);font-size:13px}
+.narration-footer span{white-space:nowrap;font-variant-numeric:tabular-nums}

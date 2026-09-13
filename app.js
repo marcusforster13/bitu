@@ -5,6 +5,82 @@ let mouth = 0, blinking = false, micActive = false, demoActive = false, micPendi
 let context, stream, source, analyser, frame, samples, blinkTimer, blinkEnd;
 let envelope = 0, lastMouthAt = 0, demoStarted = 0, operation = 0;
 let meterAt = 0, currentPose = '', presenting = false;
+const narration = $('narrationAudio');
+let narrationContext, narrationSource, narrationAnalyser, narrationSamples;
+let narrationActive = false, narrationPending = false, narrationRequest = 0;
+function resetMouth() {
+  envelope = 0; mouth = 0; setMeter(0); draw();
+}
+function narrationUI() {
+  $('narrationButton').querySelector('span').textContent = narrationPending ? 'Carregando locução…' : !narration.paused && !narration.ended ? 'Pausar locução' : narration.currentTime > 0 && !narration.ended ? 'Continuar locução' : 'Reproduzir locução oficial';
+  $('narrationButton').setAttribute('aria-pressed', String(!narration.paused && !narration.ended));
+  const time = value => Number.isFinite(value) ? `${Math.floor(value / 60)}:${String(Math.floor(value % 60)).padStart(2, '0')}` : '—';
+  $('narrationTime').textContent = `${time(narration.currentTime)} / ${time(narration.duration)}`;
+}
+function pauseNarration() {
+  ++narrationRequest; narrationPending = false; narrationActive = false;
+  narration.pause();
+  $('narrationButton').disabled = poses.size !== 6;
+  $('narrationRestart').disabled = poses.size !== 6;
+  resetMouth(); narrationUI(); status();
+}
+async function playNarration() {
+  const request = ++narrationRequest;
+  narrationPending = true;
+  $('narrationButton').disabled = $('narrationRestart').disabled = true;
+  $('narrationMessage').textContent = '';
+  narrationUI();
+  // Stop the other input before playback so the owl follows only the recording.
+  ++operation; micPending = false; demoActive = false;
+  $('device').disabled = $('demoButton').disabled = false;
+  try {
+    if (!narrationContext) {
+      narrationContext = new AudioContext();
+      narrationSource = narrationContext.createMediaElementSource(narration);
+      narrationAnalyser = narrationContext.createAnalyser(); narrationAnalyser.fftSize = 1024;
+      narrationSamples = new Float32Array(narrationAnalyser.fftSize);
+      narrationSource.connect(narrationAnalyser);
+      narrationAnalyser.connect(narrationContext.destination);
+    }
+    const resume = narrationContext.resume();
+    await releaseAudio();
+    await resume;
+    if (request !== narrationRequest) return;
+    if (narration.error) narration.load();
+    if (narration.ended) narration.currentTime = 0;
+    await narration.play();
+    if (request !== narrationRequest) return;
+    message();
+  } catch {
+    if (request !== narrationRequest) return;
+    narration.pause(); narrationActive = false; resetMouth();
+    $('narrationMessage').textContent = 'Não foi possível reproduzir a locução. Confira sua conexão e tente novamente.';
+  } finally {
+    if (request === narrationRequest) {
+      narrationPending = false;
+      $('narrationButton').disabled = $('narrationRestart').disabled = false;
+      narrationUI(); status();
+    }
+  }
+}
+$('narrationButton').addEventListener('click', () => {
+  if (!narration.paused && !narration.ended) pauseNarration(); else playNarration();
+});
+$('narrationRestart').addEventListener('click', () => {
+  narration.currentTime = 0; resetMouth(); narrationUI();
+});
+for (const event of ['timeupdate', 'loadedmetadata', 'durationchange']) narration.addEventListener(event, narrationUI);
+narration.addEventListener('playing', () => { narrationActive = true; narrationUI(); status(); });
+for (const event of ['pause', 'ended', 'waiting', 'seeking']) narration.addEventListener(event, () => {
+  narrationActive = false;
+  if (!micActive && !demoActive) resetMouth();
+  narrationUI(); status();
+});
+narration.addEventListener('seeked', () => { narrationActive = !narration.paused && !narration.ended; narrationUI(); status(); });
+narration.addEventListener('error', () => {
+  pauseNarration();
+  $('narrationMessage').textContent = 'O áudio não carregou. Confira sua conexão e clique em reproduzir para tentar novamente.';
+});
 const bars = Array.from({length: 25}, () => $('meter').appendChild(document.createElement('i')));
 const logos = {
   operational: {src: 'assets/logo-operational.png', label: 'Operational Intelligence'},
@@ -66,14 +142,14 @@ function setMeter(level) {
   $('meter').setAttribute('aria-valuenow', String(value));
 }
 function status() {
-  $('stageStatus').textContent = micActive ? 'Microfone ligado' : demoActive ? 'Demonstração' : 'Pronta para dar voz';
+  $('stageStatus').textContent = micActive ? 'Microfone ligado' : narrationActive ? 'Locução oficial' : demoActive ? 'Demonstração' : 'Pronta para dar voz';
   $('statusDot').className = `status-dot${micActive ? ' live' : demoActive ? ' demo' : ''}`;
   $('micButton').querySelector('span').textContent = micActive ? 'Desligar microfone' : 'Ligar microfone';
   $('micButton').classList.toggle('recording', micActive);
   $('micButton').setAttribute('aria-pressed', String(micActive));
   $('demoButton').querySelector('span').textContent = demoActive ? 'Parar demonstração' : 'Testar animação sem microfone';
   $('demoButton').setAttribute('aria-pressed', String(demoActive));
-  $('inputStatus').textContent = micActive ? 'Ouvindo' : demoActive ? 'Simulação' : 'Desligado';
+  $('inputStatus').textContent = micActive ? 'Ouvindo' : narrationActive ? 'Locução' : demoActive ? 'Simulação' : 'Desligado';
 }
 function scheduleBlink() {
   clearTimeout(blinkTimer); clearTimeout(blinkEnd);
@@ -95,6 +171,11 @@ function tick(now) {
     const floor = .012 - sensitivity * .010;
     const gain = 3 + sensitivity * 22;
     level = Math.max(0, Math.min(1, (rms - floor) * gain));
+  } else if (narrationActive && narrationAnalyser) {
+    narrationAnalyser.getFloatTimeDomainData(narrationSamples);
+    let sum = 0;
+    for (const sample of narrationSamples) sum += sample * sample;
+    level = Math.max(0, Math.min(1, (Math.sqrt(sum / narrationSamples.length) - .008) * 5));
   } else if (demoActive) {
     const t = (now - demoStarted) / 1000;
     level = t % 4.7 > 3.5 ? 0 : Math.max(0, .42 + .3 * Math.sin(t * 14) + .18 * Math.sin(t * 29));
@@ -129,6 +210,7 @@ async function listDevices() {
   } catch { /* The default input remains available if device enumeration is restricted. */ }
 }
 async function startMic() {
+  pauseNarration();
   if (!navigator.mediaDevices?.getUserMedia) {
     message('Abra o site por HTTPS ou em localhost para permitir o microfone.', true); return;
   }
@@ -195,6 +277,7 @@ $('device').addEventListener('change', () => { if (micActive) startMic(); });
 $('sensitivity').addEventListener('input', () => { $('sensitivityValue').textContent = `${$('sensitivity').value}%`; });
 $('blink').addEventListener('change', scheduleBlink);
 $('demoButton').addEventListener('click', async () => {
+  pauseNarration();
   ++operation; await releaseAudio(); demoActive = !demoActive; demoStarted = performance.now(); status();
   message(demoActive ? 'Demonstração em andamento. Ligue o microfone para usar sua voz.' : '');
 });
@@ -206,7 +289,7 @@ document.addEventListener('fullscreenchange', () => { if (!document.fullscreenEl
 $('helpButton').addEventListener('click', () => $('helpDialog').showModal());
 for (const id of ['closeHelp', 'understood']) $(id).addEventListener('click', () => $('helpDialog').close());
 navigator.mediaDevices?.addEventListener('devicechange', listDevices);
-window.addEventListener('pagehide', () => { ++operation; cancelAnimationFrame(frame); clearTimeout(blinkTimer); clearTimeout(blinkEnd); releaseAudio(); });
+window.addEventListener('pagehide', () => { ++operation; pauseNarration(); narrationContext?.suspend().catch(() => {}); cancelAnimationFrame(frame); clearTimeout(blinkTimer); clearTimeout(blinkEnd); releaseAudio(); });
 window.addEventListener('pageshow', e => { if (e.persisted) { scheduleBlink(); frame = requestAnimationFrame(tick); } });
 async function init() {
   try {
@@ -218,6 +301,7 @@ async function init() {
     })));
     draw(); status(); scheduleBlink(); frame = requestAnimationFrame(tick);
     $('micButton').disabled = $('demoButton').disabled = false;
+    $('narrationButton').disabled = $('narrationRestart').disabled = false;
     await listDevices();
   } catch {
     $('stageStatus').textContent = 'Falha ao carregar imagens';
