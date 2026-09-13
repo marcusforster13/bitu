@@ -6,6 +6,48 @@ let context, stream, source, analyser, frame, samples, blinkTimer, blinkEnd;
 let envelope = 0, lastMouthAt = 0, demoStarted = 0, operation = 0;
 let meterAt = 0, currentPose = '', presenting = false;
 const bars = Array.from({length: 25}, () => $('meter').appendChild(document.createElement('i')));
+const logos = {
+  operational: {src: 'assets/logo-operational.png', label: 'Operational Intelligence'},
+  xpto: {src: 'assets/logo-xpto.png', label: 'XPTO'}
+};
+let logoRequest = 0;
+function positionLogo() {
+  // Follow the original object-fit image rectangle without resizing or moving it.
+  const frame = $('mascot');
+  const width = Math.min(frame.clientWidth, frame.clientHeight * 1079 / 1457);
+  const height = width * 1457 / 1079;
+  const logo = $('chestLogo');
+  logo.style.left = `${(frame.clientWidth - width) / 2 + width * .322}px`;
+  logo.style.top = `${(frame.clientHeight - height) / 2 + height * (logo.dataset.logo === 'xpto' ? .477 : .46)}px`;
+  logo.style.width = `${width * .355}px`;
+}
+new ResizeObserver(positionLogo).observe($('mascot'));
+async function chooseLogo() {
+  const request = ++logoRequest;
+  const choice = $('logoChoice').value;
+  const logo = logos[choice];
+  $('chestLogo').hidden = true;
+  $('mascot').setAttribute('aria-label', 'Coruja robótica, mascote da XPTO, sem logo');
+  try { localStorage.setItem('xpto-clothing-logo', logo ? choice : 'none'); } catch {}
+  if (!logo) return;
+  $('clothingLogo').src = logo.src;
+  try {
+    await $('clothingLogo').decode();
+    if (request !== logoRequest) return;
+    $('chestLogo').dataset.logo = choice;
+    positionLogo();
+    $('chestLogo').hidden = false;
+    $('mascot').setAttribute('aria-label', `Coruja robótica, mascote da XPTO, com logo ${logo.label} na roupa`);
+  } catch {
+    if (request === logoRequest) message('Não foi possível carregar esse logo. Selecione novamente para tentar.', true);
+  }
+}
+$('logoChoice').addEventListener('change', chooseLogo);
+try {
+  const savedLogo = localStorage.getItem('xpto-clothing-logo');
+  if (logos[savedLogo]) $('logoChoice').value = savedLogo;
+} catch {}
+chooseLogo();
 
 function message(text = '', error = false) {
   $('message').textContent = text;

@@ -4,3 +4,16 @@
 @media(max-width:1000px){.workspace{grid-template-columns:minmax(0,1fr) 320px;gap:18px}.controls{padding:22px}.stage{min-height:650px}.mascot{height:490px;max-height:none}.stage-top{padding:22px 18px}.stage-brand{display:none}.session-tag{display:none}.page-heading p{font-size:14px}}
 @media(max-width:730px){.header{height:70px;padding:0 20px;gap:16px}.header-title,.header-divider{display:none}.header-help{font-size:12px;padding:9px 10px;gap:6px}.header-help svg{width:16px}main{padding:27px 18px 0}.page-heading{margin-bottom:22px}.eyebrow{font-size:11px}h1{font-size:27px}.workspace{grid-template-columns:1fr;gap:18px}.stage{min-height:0}.mascot{height:430px;max-height:55vh}.stage-top{padding:18px 20px}.stage-brand{display:block}.stage-bottom{padding:14px 20px 20px}.controls{padding:24px}.privacy-note{font-size:12px}.demo-button{font-size:14px}.footer-note{display:none}footer{line-height:1.7}.presenting .exit-presentation{opacity:.5}.presenting .mascot{max-height:94dvh;height:94dvh;width:min(94dvh * .74,95vw)}.message{font-size:14px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+/* Logos remain anchored to the same proportional frame as every owl pose. */
+
+.chest-logo{position:absolute;z-index:3;left:32.2%;top:46%;width:35.5%;aspect-ratio:1703/628;overflow:hidden;pointer-events:none;mix-blend-mode:multiply}
+.chest-logo[hidden]{display:none}
+.chest-logo img{position:absolute;max-width:none;width:127.54%;height:auto;left:-13.74%;top:-9.87%}
+.chest-logo[data-logo=xpto]{top:47.7%;aspect-ratio:759/184}
+.chest-logo[data-logo=xpto] img{width:110.94%;left:-5.4%;top:-143.48%}
+.logo-setting{margin:18px 0 0 auto;max-width:355px;padding:18px 24px;background:white;border:1px solid #dfe5ed;border-radius:14px}
+.presenting .logo-setting{visibility:hidden}
+
+
+
+
