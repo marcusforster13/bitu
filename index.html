@@ -34,7 +34,7 @@
         <div class="stage-bottom"><div class="caption"><span class="caption-line"></span><div><strong>A voz é sua.</strong><span>A presença é XPTO.</span></div></div><button class="stage-expand" id="stageExpand" aria-label="Abrir modo de apresentação" title="Modo de apresentação"><svg><use href="#expand"/></svg></button></div>
         <button class="exit-presentation" id="exitPresentation"><svg><use href="#close"/></svg>Sair da apresentação <kbd>Esc</kbd></button>
       </section>
-      <aside class="controls" aria-label="Controles do estúdio">
+      <aside class="controls" aria-label="Controles do estúdio" tabindex="0">
         <div class="control-heading"><span class="section-number">01</span><h2>Sua voz no comando</h2></div>
         <p class="control-intro">A coruja move o bico no ritmo do seu microfone.</p>
         <label class="field-label" for="device">Microfone</label>
@@ -52,9 +52,10 @@
         <button class="presentation-button" id="presentButton"><svg><use href="#expand"/></svg>Modo de apresentação<svg class="end-icon"><use href="#arrow"/></svg></button>
         <button class="demo-button" id="demoButton" disabled><svg><use href="#play"/></svg><span>Testar animação sem microfone</span></button>
         <p id="message" class="message" role="status" aria-live="polite"></p>
+        <div class="logo-setting"><label class="field-label" for="logoChoice">Logo na roupa</label><select id="logoChoice"><option value="none">Sem logo</option><option value="operational">Operational Intelligence</option><option value="xpto">XPTO</option></select></div>
       </aside>
     </div>
-    <div class="logo-setting"><label class="field-label" for="logoChoice">Logo na roupa</label><select id="logoChoice"><option value="none">Sem logo</option><option value="operational">Operational Intelligence</option><option value="xpto">XPTO</option></select></div>
+
     <footer><span>XPTO <span class="footer-separator">/</span> Uma nova forma de estar presente.</span><span class="footer-note">Feito para falar. Pronto para apresentar.</span></footer>
   </main>
   <dialog id="helpDialog"><div class="dialog-heading"><span class="eyebrow">ENTRE EM CENA</span><button id="closeHelp" class="icon-button" aria-label="Fechar instruções"><svg><use href="#close"/></svg></button></div><h2>Sua coruja no Teams</h2><ol><li><strong>Ative o microfone aqui.</strong><p>Permita o acesso e fale. Ajuste a sensibilidade até o bico acompanhar sua voz.</p></li><li><strong>Entre no modo de apresentação.</strong><p>Os controles somem e a coruja ocupa o palco. Use Esc para voltar.</p></li><li><strong>Compartilhe esta janela no Teams.</strong><p>Na reunião, escolha Compartilhar e selecione a janela do navegador com a coruja.</p></li><li><strong>Fale com o microfone do Teams ligado.</strong><p>O site anima a coruja; sua voz é transmitida pelo Teams. Cada apresentador pode abrir o site e usar o próprio microfone.</p></li></ol><div class="dialog-note">A coruja reage ao microfone selecionado neste computador. Ela não capta automaticamente a voz dos outros participantes e não substitui a câmera.</div><button class="primary-button" id="understood">Entendi, vamos lá<svg><use href="#arrow"/></svg></button></dialog>
