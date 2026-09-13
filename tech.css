@@ -1,0 +1,25 @@
+/* Visual skin only: original layout and mascot geometry are unchanged. */
+body{background-color:#081423;background-image:radial-gradient(ellipse at 75% 0%,#12446670,transparent 60%),linear-gradient(#58cfff07 1px,transparent 1px),linear-gradient(90deg,#58cfff07 1px,transparent 1px);background-size:auto,40px 40px,40px 40px}
+.header{background:linear-gradient(110deg,#081321,#122e49);box-shadow:0 1px 0 #48bfff55,0 8px 35px #0003}
+.brand{position:relative}
+.brand>span,.header-divider,.header-title{visibility:hidden}
+.header-logo{position:absolute;left:0;top:50%;transform:translateY(-50%);width:301px;height:60px;object-fit:contain;background:#f5f9ff;border-radius:7px;box-shadow:0 0 22px #3db8ff20}
+.header-help{border-color:#4ca5d477;background:#0f2a43;color:#e1f6ff}
+.page-heading h1{color:#edf7ff}.page-heading h1 span,.eyebrow{color:#66d9ff}.page-heading p{color:#acbfd2}.session-tag{color:#81dfff;border-color:#3d9fc277;background:#0c293d}
+.stage{border-color:#54bfe377;box-shadow:0 0 0 1px #60cfff12,0 12px 40px #0004}
+.controls{color:#e4effa;background:linear-gradient(155deg,#142b43,#0c1c30);border-color:#397591;box-shadow:inset 0 1px 0 #9bdfff18,0 12px 40px #0003;scrollbar-color:#397897 #102236}
+.controls .control-intro,.controls .field-hint,.controls .privacy-note{color:#acbfd2}
+.controls .section-number{background:#153e58;color:#81e5ff}
+.controls select,.ai-setting input,.ai-setting textarea{background:#0a1b2d;color:#e4f3ff;border-color:#355570;color-scheme:dark}
+.controls input::placeholder,.controls textarea::placeholder{color:#a4b6c9}
+.controls .audio-panel{background:#0b2034;border-color:#284a66}.controls .meter-heading,.controls .meter-heading>span:first-child,.controls .meter-scale{color:#b1c8df}
+.controls .meter i{background:#244058}.controls .meter i.lit{background:#43cfff;box-shadow:0 0 7px #43cfff55}
+.controls .primary-button{background:linear-gradient(105deg,#2159e7,#0876af);box-shadow:0 3px 15px #19b7ff28}
+.controls .primary-button.recording{background:#234563}
+.controls .presentation-button{background:#143550;border-color:#38759b;color:#a1e5ff}
+.controls .demo-button,.controls .blink-setting svg,.controls .range-heading output,.controls .narration-footer,.controls .narration-footer button{color:#92dfff}
+.controls input[type=range],.controls input[role=switch]:checked{accent-color:#48caff}.controls input[role=switch]:checked{background:#168cc6}
+.controls .control-divider{background:#2b4862}.controls .logo-setting{background:transparent;border-color:#2b4862}.controls .narration-setting{border-color:#2b4862}
+.controls .message{color:#a7ddff}.controls .message.error{color:#ffb7b7}
+footer,.footer-note{color:#99aec4}.footer-separator{color:#52728e}
+@media(max-width:730px){.header-logo{width:126px;height:46px}}
