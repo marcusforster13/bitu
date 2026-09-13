@@ -18,6 +18,6 @@
 
 
 /* Only the controls scroll; the mascot keeps its original image rules. */
-.controls{max-height:clamp(320px,calc(100dvh - 280px),665px);overflow-y:auto;overscroll-behavior-y:contain;scrollbar-width:thin;scrollbar-color:#9baec9 transparent;align-self:start;scroll-padding-block:20px}
+.controls{max-height:clamp(384px,calc(120dvh - 336px),665px);overflow-y:auto;overscroll-behavior-y:contain;scrollbar-width:thin;scrollbar-color:#9baec9 transparent;align-self:start;scroll-padding-block:20px}
 .controls .logo-setting{max-width:none;margin:22px 0 0;padding:20px 0 0;border:0;border-top:1px solid var(--line);border-radius:0}
-@media(max-width:730px){.controls{max-height:65dvh}}
+@media(max-width:730px){.controls{max-height:78dvh}}
