@@ -26,3 +26,4 @@
 .narration-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:12px 0;font-size:13px;color:var(--muted)}
 .narration-footer button{padding:5px 0;border:0;background:transparent;color:var(--blue);font-size:13px}
 .narration-footer span{white-space:nowrap;font-variant-numeric:tabular-nums}
+.ai-setting input,.ai-setting textarea{box-sizing:border-box;width:100%;padding:11px;border:1px solid var(--line);border-radius:7px;font:inherit;font-size:14px;color:inherit;background:white;margin-bottom:14px}.ai-setting textarea{resize:vertical;min-height:90px;max-height:220px}.ai-answer{font-size:14px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere}.ai-answer:empty{display:none}.ai-setting .field-hint{margin-top:12px}

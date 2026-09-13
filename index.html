@@ -62,11 +62,28 @@
           <p class="field-hint">No Teams, compartilhe também o som do computador para todos ouvirem a locução.</p>
           <p id="narrationMessage" class="message" role="status" aria-live="polite"></p>
         </section>
+        <section class="narration-setting ai-setting" aria-labelledby="aiTitle">
+          <h2 id="aiTitle">Modo IA</h2>
+          <p class="control-intro">Faça uma pergunta e ouça a coruja responder.</p>
+          <form id="aiForm">
+            <label class="field-label" for="aiCode">Código de acesso</label>
+            <input id="aiCode" type="password" required maxlength="128" autocomplete="off" placeholder="Código fornecido pelo responsável">
+            <label class="field-label" for="aiQuestion">Sua pergunta</label>
+            <textarea id="aiQuestion" required maxlength="1000" rows="3" placeholder="O que você quer saber?"></textarea>
+            <button class="primary-button" id="aiSend" type="submit">Perguntar à coruja</button>
+          </form>
+          <p class="field-hint">Sua pergunta é enviada à OpenAI. Respostas e voz são geradas por IA e podem conter erros. Cada pergunta é independente.</p>
+          <p id="aiMessage" class="message" role="status" aria-live="polite"></p>
+          <p id="aiAnswer" class="ai-answer" aria-live="polite"></p>
+          <audio id="aiAudio" preload="none"></audio>
+          <div class="narration-footer"><button id="aiReplay" disabled>Ouvir resposta</button><button id="aiStop" disabled>Parar</button></div>
+        </section>
       </aside>
     </div>
 
     <footer><span>XPTO <span class="footer-separator">/</span> Uma nova forma de estar presente.</span><span class="footer-note">Feito para falar. Pronto para apresentar.</span></footer>
   </main>
   <dialog id="helpDialog"><div class="dialog-heading"><span class="eyebrow">ENTRE EM CENA</span><button id="closeHelp" class="icon-button" aria-label="Fechar instruções"><svg><use href="#close"/></svg></button></div><h2>Sua coruja no Teams</h2><ol><li><strong>Ative o microfone aqui.</strong><p>Permita o acesso e fale. Ajuste a sensibilidade até o bico acompanhar sua voz.</p></li><li><strong>Entre no modo de apresentação.</strong><p>Os controles somem e a coruja ocupa o palco. Use Esc para voltar.</p></li><li><strong>Compartilhe esta janela no Teams.</strong><p>Na reunião, escolha Compartilhar e selecione a janela do navegador com a coruja.</p></li><li><strong>Fale com o microfone do Teams ligado.</strong><p>O site anima a coruja; sua voz é transmitida pelo Teams. Cada apresentador pode abrir o site e usar o próprio microfone.</p></li></ol><div class="dialog-note">A coruja reage ao microfone selecionado neste computador. Ela não capta automaticamente a voz dos outros participantes e não substitui a câmera.</div><button class="primary-button" id="understood">Entendi, vamos lá<svg><use href="#arrow"/></svg></button></dialog>
+<script src="ai.js" defer></script>
 </body>
 </html>

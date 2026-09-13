@@ -25,6 +25,7 @@ function pauseNarration() {
   resetMouth(); narrationUI(); status();
 }
 async function playNarration() {
+  window.xptoAI?.stop();
   const request = ++narrationRequest;
   narrationPending = true;
   $('narrationButton').disabled = $('narrationRestart').disabled = true;
@@ -161,6 +162,9 @@ function scheduleBlink() {
   }, 2500 + Math.random() * 3400);
 }
 function tick(now) {
+  if (window.xptoAI?.active) {
+    $('stageStatus').textContent = 'IA respondendo'; $('inputStatus').textContent = 'Voz da IA';
+  } else if ($('inputStatus').textContent === 'Voz da IA') status();
   let level = 0;
   if (micActive && analyser) {
     analyser.getFloatTimeDomainData(samples);
@@ -176,6 +180,8 @@ function tick(now) {
     let sum = 0;
     for (const sample of narrationSamples) sum += sample * sample;
     level = Math.max(0, Math.min(1, (Math.sqrt(sum / narrationSamples.length) - .008) * 5));
+  } else if (window.xptoAI?.active) {
+    level = window.xptoAI.level();
   } else if (demoActive) {
     const t = (now - demoStarted) / 1000;
     level = t % 4.7 > 3.5 ? 0 : Math.max(0, .42 + .3 * Math.sin(t * 14) + .18 * Math.sin(t * 29));
@@ -210,6 +216,7 @@ async function listDevices() {
   } catch { /* The default input remains available if device enumeration is restricted. */ }
 }
 async function startMic() {
+  window.xptoAI?.stop();
   pauseNarration();
   if (!navigator.mediaDevices?.getUserMedia) {
     message('Abra o site por HTTPS ou em localhost para permitir o microfone.', true); return;
@@ -277,6 +284,7 @@ $('device').addEventListener('change', () => { if (micActive) startMic(); });
 $('sensitivity').addEventListener('input', () => { $('sensitivityValue').textContent = `${$('sensitivity').value}%`; });
 $('blink').addEventListener('change', scheduleBlink);
 $('demoButton').addEventListener('click', async () => {
+  window.xptoAI?.stop();
   pauseNarration();
   ++operation; await releaseAudio(); demoActive = !demoActive; demoStarted = performance.now(); status();
   message(demoActive ? 'Demonstração em andamento. Ligue o microfone para usar sua voz.' : '');
@@ -309,3 +317,8 @@ async function init() {
   }
 }
 init();
+window.addEventListener('xpto-ai-play', () => {
+  ++operation; micPending = false; demoActive = false;
+  $('device').disabled = $('demoButton').disabled = false;
+  pauseNarration(); releaseAudio();
+});
