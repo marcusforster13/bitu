@@ -30,36 +30,36 @@ body{background-color:#05070f;background-image:linear-gradient(#1b244038 1px,tra
 .header{background:#05070ff2;box-shadow:0 1px 0 #1b2440}
 .header-logo{border-radius:0;box-shadow:none}
 .header-help{background:transparent;border-color:#1b2440;color:#a1afc2;border-radius:0}
-.page-heading h1{color:#e9edf5}.page-heading h1 span{color:transparent;-webkit-text-stroke:1px #00d3e4}
-.eyebrow{color:#00d3e4}.page-heading p{color:#98a6ba}
-.session-tag{color:#00d3e4;border-color:#00d3e4;background:#00d3e40a;border-radius:0}
+.page-heading h1{color:#e9edf5}.page-heading h1 span{color:transparent;-webkit-text-stroke:1px #2A9BF0}
+.eyebrow{color:#2A9BF0}.page-heading p{color:#98a6ba}
+.session-tag{color:#2A9BF0;border-color:#2A9BF0;background:#2A9BF00a;border-radius:0}
 .stage{border-color:#1b2440;border-radius:0;box-shadow:none}
-.stage::after{content:"";position:absolute;inset:12px;pointer-events:none;z-index:4;background:linear-gradient(#00d3e4,#00d3e4) left top/22px 1px no-repeat,linear-gradient(#00d3e4,#00d3e4) left top/1px 22px no-repeat,linear-gradient(#00d3e4,#00d3e4) right top/22px 1px no-repeat,linear-gradient(#00d3e4,#00d3e4) right top/1px 22px no-repeat,linear-gradient(#00d3e4,#00d3e4) left bottom/22px 1px no-repeat,linear-gradient(#00d3e4,#00d3e4) left bottom/1px 22px no-repeat,linear-gradient(#00d3e4,#00d3e4) right bottom/22px 1px no-repeat,linear-gradient(#00d3e4,#00d3e4) right bottom/1px 22px no-repeat}
+.stage::after{content:"";position:absolute;inset:12px;pointer-events:none;z-index:4;background:linear-gradient(#2A9BF0,#2A9BF0) left top/22px 1px no-repeat,linear-gradient(#2A9BF0,#2A9BF0) left top/1px 22px no-repeat,linear-gradient(#2A9BF0,#2A9BF0) right top/22px 1px no-repeat,linear-gradient(#2A9BF0,#2A9BF0) right top/1px 22px no-repeat,linear-gradient(#2A9BF0,#2A9BF0) left bottom/22px 1px no-repeat,linear-gradient(#2A9BF0,#2A9BF0) left bottom/1px 22px no-repeat,linear-gradient(#2A9BF0,#2A9BF0) right bottom/22px 1px no-repeat,linear-gradient(#2A9BF0,#2A9BF0) right bottom/1px 22px no-repeat}
 .presenting .stage::after{display:none}
-.caption-line{background:#00d3e4}.stage-expand{border-radius:0;border-color:#1b2440}
-.controls{background:#090d20;color:#e9edf5;border-color:#1b2440;border-radius:0;box-shadow:none;scrollbar-color:#00d3e4 #090d20}
+.caption-line{background:#2A9BF0}.stage-expand{border-radius:0;border-color:#1b2440}
+.controls{background:#090d20;color:#e9edf5;border-color:#1b2440;border-radius:0;box-shadow:none;scrollbar-color:#2A9BF0 #090d20}
 .controls .control-intro,.controls .field-hint,.controls .privacy-note{color:#98a6ba}
-.controls .section-number{color:#00d3e4;background:#00d3e412;border-radius:0}
+.controls .section-number{color:#2A9BF0;background:#2A9BF012;border-radius:0}
 .controls select,.ai-setting input,.ai-setting textarea{background:#0c1127;color:#e9edf5;border-color:#1b2440;border-radius:0}
 .controls input::placeholder,.controls textarea::placeholder{color:#8d9cb1}
 .controls .audio-panel{background:#05070f;border-color:#1b2440;border-radius:0}
 .controls .meter-heading,.controls .meter-heading>span:first-child,.controls .meter-scale{color:#98a6ba}
-.controls .meter i{background:#1b2440;border-radius:0}.controls .meter i.lit{background:#00d3e4;box-shadow:0 0 8px #00d3e430}
-.controls .primary-button{background:#00d3e4;color:#001014;border-radius:0;box-shadow:none}
-.controls .primary-button.recording{background:#0c1127;color:#00d3e4;box-shadow:inset 0 0 0 1px #00d3e4}
-.controls .presentation-button{background:#00d3e412;border-color:#00d3e4;color:#00d3e4;border-radius:0}
-.controls .demo-button,.controls .blink-setting svg,.controls .range-heading output,.controls .narration-footer button{color:#00d3e4}
-.controls .narration-footer{color:#98a6ba}.controls input[type=range]{accent-color:#00d3e4}.controls input[role=switch]:checked{background:#00a9b7}
+.controls .meter i{background:#1b2440;border-radius:0}.controls .meter i.lit{background:#2A9BF0;box-shadow:0 0 8px #2A9BF030}
+.controls .primary-button{background:#2A9BF0;color:#001014;border-radius:0;box-shadow:none}
+.controls .primary-button.recording{background:#0c1127;color:#2A9BF0;box-shadow:inset 0 0 0 1px #2A9BF0}
+.controls .presentation-button{background:#2A9BF012;border-color:#2A9BF0;color:#2A9BF0;border-radius:0}
+.controls .demo-button,.controls .blink-setting svg,.controls .range-heading output,.controls .narration-footer button{color:#2A9BF0}
+.controls .narration-footer{color:#98a6ba}.controls input[type=range]{accent-color:#2A9BF0}.controls input[role=switch]:checked{background:#00a9b7}
 .controls .control-divider{background:#1b2440}.controls .logo-setting,.controls .narration-setting{border-color:#1b2440}
 .controls .message{color:#9debf1}.controls .message.error{color:#ffb7b7}
 .status-dot.live{background:#64e79a;box-shadow:0 0 10px #64e79a66}
 footer,.footer-note{color:#7c8aa0}.footer-separator{color:#546176}
-button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline-color:#00d3e4}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline-color:#2A9BF0}
 
 /* Approved BURI banner adapted within the existing header footprint. */
-.header{position:relative;background-color:#030b12;background-image:radial-gradient(ellipse at 65% 80%,#00a8c415,transparent 55%),linear-gradient(90deg,transparent 49.9%,#00d3e414 50%,transparent 50.1%);background-size:auto,100px 100%;isolation:isolate}
+.header{position:relative;background-color:#030b12;background-image:radial-gradient(ellipse at 65% 80%,#00a8c415,transparent 55%),linear-gradient(90deg,transparent 49.9%,#2A9BF014 50%,transparent 50.1%);background-size:auto,100px 100%;isolation:isolate}
 .buri-wordmark{position:absolute;left:0;top:50%;transform:translateY(-50%);color:#f4f8fc;font-size:42px;font-weight:800;letter-spacing:1px;line-height:1;white-space:nowrap;text-shadow:0 0 18px #ffffff12}
-.buri-wordmark small{position:absolute;left:calc(100% + 22px);top:50%;transform:translateY(-50%);border-left:2px solid #00d3e4;padding-left:20px;font-size:11px;font-weight:500;letter-spacing:2px;line-height:1.5;color:#d2e4ec}
+.buri-wordmark small{position:absolute;left:calc(100% + 22px);top:50%;transform:translateY(-50%);border-left:2px solid #2A9BF0;padding-left:20px;font-size:11px;font-weight:500;letter-spacing:2px;line-height:1.5;color:#d2e4ec}
 .brasilia-art{position:absolute;right:calc(4.6% + 230px);top:7px;width:248px;height:70px;background-image:url('assets/buri-header-art.png');background-repeat:no-repeat;background-size:489px 163px;background-position:-241px -47px;pointer-events:none;z-index:-1}
 .header-help{position:relative;background:#030b12e8}
 @media(max-width:1050px){.buri-wordmark small{left:0;top:calc(100% + 3px);transform:none;border:0;padding:0;font-size:8px;letter-spacing:1px}.buri-wordmark{font-size:36px;transform:translateY(-65%)}.brasilia-art{right:calc(4.6% + 210px)}}
@@ -71,3 +71,34 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 
 /* Keep recording free of presentation controls; Escape still exits. */
 .presenting .exit-presentation{display:none!important}
+
+/* Official BURI palette; visual colors only. */
+:root{--blue:#1860C0;--muted:#C4D2DA;--line:#C4D2DA}
+body{background-color:#03143A;background-image:linear-gradient(#2A9BF014 1px,transparent 1px),linear-gradient(90deg,#2A9BF014 1px,transparent 1px)}
+.header{background-color:#03143A;background-image:radial-gradient(ellipse at 65% 80%,#2A9BF026,transparent 55%),linear-gradient(90deg,transparent 49.9%,#2A9BF020 50%,transparent 50.1%);box-shadow:0 1px 0 #1860C0}
+.header-help{background:#03143A;border-color:#1860C0;color:#C4D2DA}
+.buri-wordmark,.page-heading h1{color:#C4D2DA}.buri-wordmark small{color:#C4D2DA;border-color:#2A9BF0}
+.page-heading h1 span{color:transparent;-webkit-text-stroke-color:#2A9BF0}
+.eyebrow,.controls .section-number{color:#2A9BF0}
+.page-heading p,.controls .control-intro,.controls .field-hint,.controls .privacy-note,footer,.footer-note{color:#C4D2DA}
+.session-tag{color:#C4D2DA;background:#1860C026;border-color:#2A9BF0}
+.stage{border-color:#1860C0}
+.caption-line{background:#2A9BF0}.stage-expand{color:#1860C0;border-color:#C4D2DA}
+.controls{background:#03143A;color:#C4D2DA;border-color:#1860C0;scrollbar-color:#2A9BF0 #03143A}
+.controls .section-number{background:#1860C033}
+.controls select,.ai-setting input,.ai-setting textarea{background:#03143A;color:#C4D2DA;border-color:#1860C0}
+.controls input::placeholder,.controls textarea::placeholder{color:#C4D2DA}
+.controls .audio-panel{background:#03143A;border-color:#1860C0}
+.controls .meter-heading,.controls .meter-heading>span:first-child,.controls .meter-scale{color:#C4D2DA}
+.controls .meter i{background:#1860C055}.controls .meter i.lit{background:#2A9BF0;box-shadow:0 0 8px #2A9BF055}
+.controls .primary-button{background:#1860C0;color:#fff}.controls .primary-button.recording{background:#03143A;color:#C4D2DA;box-shadow:inset 0 0 0 1px #2A9BF0}
+.controls .presentation-button{background:#1860C033;border-color:#2A9BF0;color:#C4D2DA}
+.controls .demo-button,.controls .blink-setting svg,.controls .range-heading output,.controls .narration-footer button{color:#2A9BF0}
+.controls .narration-footer{color:#C4D2DA}.controls input[type=range]{accent-color:#2A9BF0}.controls input[role=switch]:checked{background:#1860C0}
+.controls .control-divider{background:#1860C0}.controls .logo-setting,.controls .narration-setting{border-color:#1860C0}
+.controls .message{color:#C4D2DA}.controls .message.error{color:#ffb7b7}
+.status-dot.live{background:#2A9BF0;box-shadow:0 0 10px #2A9BF066}.footer-separator{color:#2A9BF0}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline-color:#2A9BF0}
+
+
+.brasilia-art{mix-blend-mode:screen}
