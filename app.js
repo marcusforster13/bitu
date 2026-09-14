@@ -1,6 +1,35 @@
 const $ = (id) => document.getElementById(id);
 const mouths = ['closed', 'medium', 'wide'];
 const poses = new Map();
+const whitePoses = new Map(), greenPoses = new Map();
+let backgroundRequest = 0;
+async function chooseBackground() {
+  const request = ++backgroundRequest;
+  const green = $('backgroundChoice').value === 'green';
+  $('backgroundMessage').textContent = green && greenPoses.size !== 6 ? 'Preparando fundo verde…' : '';
+  try {
+    if (green && greenPoses.size !== 6) {
+      const loaded = await Promise.all([...whitePoses.keys()].map(async key => {
+        const img = new Image(); img.src = `assets/green-${key}.png`; img.className = 'pose'; img.alt = ''; img.setAttribute('aria-hidden','true');
+        await img.decode(); return [key,img];
+      }));
+      if (request !== backgroundRequest) return;
+      for (const [key,img] of loaded) { greenPoses.set(key,img); $('mascot').append(img); }
+    }
+    if (request !== backgroundRequest) return;
+    for (const img of poses.values()) img.classList.remove('active');
+    poses.clear();
+    for (const [key,img] of (green ? greenPoses : whitePoses)) poses.set(key,img);
+    $('stage').classList.toggle('green-background',green);
+    currentPose = ''; draw();
+    $('backgroundMessage').textContent = '';
+  } catch {
+    if (request !== backgroundRequest) return;
+    $('backgroundChoice').value = $('stage').classList.contains('green-background') ? 'green' : 'white';
+    $('backgroundMessage').textContent = 'Não foi possível carregar o fundo. Tente novamente; o fundo anterior foi mantido.';
+  }
+}
+$('backgroundChoice').addEventListener('change', chooseBackground);
 let mouth = 0, blinking = false, micActive = false, demoActive = false, micPending = false;
 let context, stream, source, analyser, frame, samples, blinkTimer, blinkEnd;
 let envelope = 0, lastMouthAt = 0, demoStarted = 0, operation = 0;
@@ -305,11 +334,12 @@ async function init() {
       const key = `${eyes}-${pose}`;
       let img = document.querySelector(`[data-pose="${key}"]`);
       if (!img) { img = new Image(); img.src = `assets/${key}.png`; img.className = 'pose'; img.alt = ''; img.setAttribute('aria-hidden','true'); img.dataset.pose = key; $('mascot').append(img); }
-      poses.set(key, img); await img.decode();
+      poses.set(key, img); whitePoses.set(key,img); await img.decode();
     })));
     draw(); status(); scheduleBlink(); frame = requestAnimationFrame(tick);
     $('micButton').disabled = $('demoButton').disabled = false;
     $('narrationButton').disabled = $('narrationRestart').disabled = false;
+    $('backgroundChoice').disabled = false;
     await listDevices();
   } catch {
     $('stageStatus').textContent = 'Falha ao carregar imagens';

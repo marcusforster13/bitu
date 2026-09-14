@@ -80,6 +80,13 @@
           <audio id="aiAudio" preload="none"></audio>
           <div class="narration-footer"><button id="aiReplay" disabled>Ouvir resposta</button><button id="aiStop" disabled>Parar</button></div>
         </section>
+        <section class="narration-setting" aria-labelledby="backgroundTitle">
+          <h2 id="backgroundTitle">Fundo da gravação</h2>
+          <p class="control-intro">Escolha o fundo para apresentar ou gravar.</p>
+          <label class="field-label" for="backgroundChoice">Cor do fundo</label>
+          <select id="backgroundChoice" disabled><option value="white">Branco (original)</option><option value="green">Verde (chroma key)</option></select>
+          <p id="backgroundMessage" class="message" role="status" aria-live="polite"></p>
+        </section>
       </aside>
     </div>
 

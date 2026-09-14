@@ -65,3 +65,6 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 @media(max-width:1050px){.buri-wordmark small{left:0;top:calc(100% + 3px);transform:none;border:0;padding:0;font-size:8px;letter-spacing:1px}.buri-wordmark{font-size:36px;transform:translateY(-65%)}.brasilia-art{right:calc(4.6% + 210px)}}
 @media(max-width:730px){.buri-wordmark{font-size:30px}.buri-wordmark small{font-size:7px;letter-spacing:.5px}.brasilia-art{display:none}}
 .brasilia-art{width:210px;background-position:-279px -47px;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.stage.green-background{background:#00ff00}
+.stage.green-background .stage-label,.stage.green-background .stage-brand,.stage.green-background .caption div>span{color:#163016}
+.presenting .stage.green-background{box-shadow:none}
