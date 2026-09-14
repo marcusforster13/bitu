@@ -68,3 +68,6 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 .stage.green-background{background:#00ff00}
 .stage.green-background .stage-label,.stage.green-background .stage-brand,.stage.green-background .caption div>span{color:#163016}
 .presenting .stage.green-background{box-shadow:none}
+
+/* Keep recording free of presentation controls; Escape still exits. */
+.presenting .exit-presentation{display:none!important}
